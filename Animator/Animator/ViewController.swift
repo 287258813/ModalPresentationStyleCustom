@@ -15,7 +15,11 @@ class LifeCyclePresentationController: UIPresentationController {
     }
     
     override func presentationTransitionDidEnd(_ completed: Bool) {
-        presentingViewController.viewDidDisappear(true)
+        if completed {
+            presentingViewController.viewDidDisappear(true)
+        } else {
+            presentingViewController.viewDidAppear(true)
+        }
     }
     
     override func dismissalTransitionWillBegin() {
@@ -23,7 +27,11 @@ class LifeCyclePresentationController: UIPresentationController {
     }
     
     override func dismissalTransitionDidEnd(_ completed: Bool) {
-        presentingViewController.viewDidAppear(true)
+        if completed {
+            presentingViewController.viewDidAppear(true)
+        } else {
+            presentingViewController.viewDidDisappear(true)
+        }
     }
 }
 
